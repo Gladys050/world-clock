@@ -1,6 +1,104 @@
-h1 {
-  text-align: center;
+body {
+  background-color: #adadb3;
+  color: rgb(14, 13, 13);
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
 }
-footer {
+
+.containers {
   text-align: center;
+  width: 90%;
+  max-width: 800px;
+}
+
+h1 {
+  font-size: 36px;
+  font-weight: 700;
+  margin-bottom: 40px;
+}
+
+.city-wrapper {
+  display: inline;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  margin-bottom: 50px;
+}
+
+.cities-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  width: 100%;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+
+.city {
+  flex: 1 1 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 10px;
+  background: rgba(255, 255, 255, 0.18);
+  border-radius: 20px;
+  min-width: 50px;
+}
+
+.city h2 {
+  font-size: 1.2rem;
+  margin-bottom: 5px;
+  font-weight: 500;
+  color: #123549;
+  font-style: bold;
+}
+
+.time {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.date {
+  font-size: 0.9rem;
+  opacity: 0.8;
+  margin-bottom: 5px;
+}
+
+select {
+  background: white;
+  display: block;
+  border-radius: 20px;
+  color: rgb(14, 13, 13);
+  font-size: 15px;
+  padding: 10px;
+  width: 500px;
+  outline: none;
+  cursor: pointer;
+}
+
+select option {
+  background-color: rgba(255, 255, 255, 0.18);
+  color: rgb(14, 13, 13);
+}
+
+select:focus {
+  background-color: #e0e0e0;
+  outline: none;
+}
+
+footer {
+  margin-top: 60px;
+  font-size: 0.8rem;
+  opacity: 0.7;
+}
+
+footer a {
+  color: white;
+  text-decoration: underline;
 }

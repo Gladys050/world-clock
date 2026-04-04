@@ -1,46 +1,155 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 body {
   background-color: #adadb3;
   color: rgb(14, 13, 13);
   font-family: Arial, Helvetica, sans-serif;
-  margin: 0;
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
+  padding: 2rem 1rem;
 }
 
 .containers {
   text-align: center;
   width: 90%;
-  max-width: 800px;
+  max-width: 860px;
 }
 
 h1 {
   font-size: 36px;
   font-weight: 700;
-  margin-bottom: 40px;
+  margin-bottom: 2rem;
 }
 
-.city-wrapper {
-  display: inline;
-  justify-content: space-around;
+.select-row {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: center;
   flex-wrap: wrap;
-  margin-bottom: 50px;
+  margin-bottom: 1.5rem;
+}
+
+select {
+  flex: 1;
+  min-width: 200px;
+  max-width: 460px;
+  background: white;
+  border-radius: 20px;
+  color: rgb(14, 13, 13);
+  font-size: 15px;
+  padding: 10px 16px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+select:focus {
+  background-color: #e0e0e0;
+}
+
+select option {
+  background-color: white;
+  color: rgb(14, 13, 13);
+}
+
+#myLocBtn {
+  background: white;
+  border: none;
+  border-radius: 20px;
+  color: rgb(14, 13, 13);
+  font-size: 14px;
+  padding: 10px 20px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+#myLocBtn:hover {
+  background-color: #e0e0e0;
+}
+
+.selected-card {
+  display: none;
+  background: rgba(255, 255, 255, 0.22);
+  border-radius: 20px;
+  padding: 1.5rem 2rem;
+  margin-bottom: 1.5rem;
+  text-align: left;
+}
+
+.selected-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.selected-name {
+  font-size: 22px;
+  font-weight: 700;
+  color: #123549;
+}
+
+.selected-sublabel {
+  font-size: 13px;
+  opacity: 0.7;
+  margin-top: 2px;
+}
+
+/* Bonus 1: Back to homepage link */
+.back-link {
+  font-size: 13px;
+  color: #123549;
+  text-decoration: underline;
+  cursor: pointer;
+  opacity: 0.8;
+  padding-top: 4px;
+}
+
+.back-link:hover {
+  opacity: 1;
+}
+
+.selected-time {
+  font-size: 42px;
+  font-weight: bold;
+  line-height: 1.1;
+}
+
+.selected-time small {
+  font-size: 20px;
+  font-weight: 400;
+  opacity: 0.7;
+  margin-left: 6px;
+}
+
+.selected-date {
+  font-size: 15px;
+  opacity: 0.75;
+  margin-top: 6px;
 }
 
 .cities-wrapper {
   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items: stretch;
   justify-content: space-between;
-  gap: 8px;
+  gap: 12px;
   width: 100%;
-  margin-top: 10px;
   flex-wrap: wrap;
+  margin-bottom: 1.5rem;
 }
 
 .city {
-  flex: 1 1 80px;
+  flex: 1 1 140px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -48,52 +157,36 @@ h1 {
   padding: 20px 10px;
   background: rgba(255, 255, 255, 0.18);
   border-radius: 20px;
-  min-width: 50px;
+  min-width: 120px;
 }
 
 .city h2 {
-  font-size: 1.2rem;
-  margin-bottom: 5px;
-  font-weight: 500;
+  font-size: 1.1rem;
+  margin-bottom: 6px;
+  font-weight: 600;
   color: #123549;
-  font-style: bold;
 }
 
 .time {
   font-size: 1.5rem;
   font-weight: bold;
+  line-height: 1.2;
+}
+
+.time small {
+  font-size: 0.85rem;
+  font-weight: 400;
+  opacity: 0.75;
 }
 
 .date {
-  font-size: 0.9rem;
+  font-size: 0.82rem;
   opacity: 0.8;
-  margin-bottom: 5px;
-}
-
-select {
-  background: white;
-  display: block;
-  border-radius: 20px;
-  color: rgb(14, 13, 13);
-  font-size: 15px;
-  padding: 10px;
-  width: 500px;
-  outline: none;
-  cursor: pointer;
-}
-
-select option {
-  background-color: rgba(255, 255, 255, 0.18);
-  color: rgb(14, 13, 13);
-}
-
-select:focus {
-  background-color: #e0e0e0;
-  outline: none;
+  margin-bottom: 6px;
 }
 
 footer {
-  margin-top: 60px;
+  margin-top: 2.5rem;
   font-size: 0.8rem;
   opacity: 0.7;
 }

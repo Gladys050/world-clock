@@ -4,52 +4,83 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="css/style.css" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.30.1/moment.min.js" integrity="sha512-hUhvpC5f8cgc04OZb55j0KNGh4eh7dLxd/dPSJ5VyzqDWxsayYbojWyl5Tkcgrmb/RVKCRJI1jNlRbVP4WWC4w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.6.0/moment-timezone.min.js" integrity="sha512-WHGbuvJ5ZKdxYDXBD+JozxVP7nbimtB8XUsJ6PFfXLt/yaMOQzegjjyPY6U2rWP9+fgJm5b6Re7mWL3+ZLioRQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <title>World clock - Gladys Monnapule</title>
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.43/moment-timezone-with-data.min.js"
+      crossorigin="anonymous"
+    ></script>
+    <title>World Clock - Gladys Monnapule</title>
   </head>
 
   <body>
     <div class="containers">
       <h1>World Clock</h1>
 
-      <select class="city-wrapper">
-        <option value="">Select a city...</option>
-        <option value="Europe/London">London</option>
-        <option value="Australia/Sydney">Sydney</option>
-        <option value="Africa/Harare">Zimbabwe</option>
-        <option value="Africa/Johannesburg">Kimberley</option>
-      </select>
-    
-      <div class="cities-wrapper">
-      <div class="city" id="london">
-        <h2>London</h2>
-        <div class="date">September 17th 2022</div>
-        <div class="time">12:00:00 AM</div>
+      <div class="select-row">
+        <select id="citySelect">
+          <option value="">Select a city...</option>
+          <option value="Europe/London">London</option>
+          <option value="Australia/Sydney">Sydney</option>
+          <option value="Africa/Harare">Harare, Zimbabwe</option>
+          <option value="Africa/Johannesburg">Kimberley, South Africa</option>
+          <option value="America/New_York">New York</option>
+          <option value="Asia/Tokyo">Tokyo</option>
+          <option value="America/Los_Angeles">Los Angeles</option>
+        </select>
+        <button id="myLocBtn">📍 My location</button>
       </div>
 
-      <div class="city" id="sydney">
-        <h2>Sydney</h2>
-        <div class="date">September 17th 2022</div>
-        <div class="time">12:00:00 AM</div>
-      </div>
-        <div class="city" id="zimbabwe">
-        <h2>Zimbabwe</h2>
-        <div class="date">September 17th 2022</div>
-        <div class="time">12:00:00 AM</div>
+      <div class="selected-card" id="selectedCard">
+        <div class="selected-header">
+          <div>
+            <div class="selected-name" id="selectedName"></div>
+            <div class="selected-sublabel" id="selectedLabel"></div>
+          </div>
+
+          <a class="back-link" id="backLink">← Back to all cities</a>
         </div>
-        <div class="city" id="kimberley">
-        <h2>Kimberley</h2>
-        <div class="date">September 17th 2022</div>
-        <div class="time">12:00:00 AM</div>
+        <div class="selected-time" id="selectedTime"></div>
+        <div class="selected-date" id="selectedDate"></div>
       </div>
+
+      <div class="cities-wrapper" id="cityGrid">
+        <div class="city" id="london">
+          <h2>London</h2>
+          <div class="date" id="d-london">—</div>
+          <div class="time" id="t-london">—</div>
+        </div>
+
+        <div class="city" id="sydney">
+          <h2>Sydney</h2>
+          <div class="date" id="d-sydney">—</div>
+          <div class="time" id="t-sydney">—</div>
+        </div>
+
+        <div class="city" id="harare">
+          <h2>Harare</h2>
+          <div class="date" id="d-harare">—</div>
+          <div class="time" id="t-harare">—</div>
+        </div>
+
+        <div class="city" id="userCard" style="display: none">
+          <h2 id="userCardName">My location</h2>
+          <div class="date" id="d-user">—</div>
+          <div class="time" id="t-user">—</div>
+        </div>
       </div>
-    <footer>
-      This project was created by Gladys Monnapule and is
-      <a href="https://github.com/Gladys050/world-clock" target="_blank"
-        >open sourced on GitHub</a
-      >
-    </footer>
+
+      <footer>
+        This project was created by Gladys Monnapule and is
+        <a href="https://github.com/Gladys050/world-clock" target="_blank"
+          >open sourced on GitHub</a
+        >
+      </footer>
+    </div>
+
     <script src="javascript/index.js"></script>
   </body>
 </html>

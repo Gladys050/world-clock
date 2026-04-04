@@ -1,80 +1,86 @@
+let selectedTZ = null;
+let userTZ = null;
+let userCityName = null;
+
+function getFormatted(tz) {
+  const m = moment().tz(tz);
+  return {
+    time: m.format("h:mm:ss") + " <small>" + m.format("A") + "</small>",
+    date: m.format("MMMM Do, YYYY"),
+  };
+}
+
 function updateTime() {
-  // London
-  let londonElement = document.querySelector("#london");
-  if (londonElement) {
-    let londonDateElement = londonElement.querySelector(".date");
-    let londonTimeElement = londonElement.querySelector(".time");
-    let londonTime = moment().tz("Europe/London");
+  const staticCities = [
+    { tz: "Europe/London", tid: "t-london", did: "d-london" },
+    { tz: "Australia/Sydney", tid: "t-sydney", did: "d-sydney" },
+    { tz: "Africa/Harare", tid: "t-harare", did: "d-harare" },
+  ];
 
-    londonDateElement.innerHTML = londonTime.format("MMMM	Do YYYY");
-    londonTimeElement.innerHTML = londonTime.format(
-      "h:mm:ss [<small>]A[</small>]",
-    );
+  staticCities.forEach(function (c) {
+    const f = getFormatted(c.tz);
+    document.getElementById(c.tid).innerHTML = f.time;
+    document.getElementById(c.did).textContent = f.date;
+  });
+
+  if (userTZ) {
+    const f = getFormatted(userTZ);
+    document.getElementById("t-user").innerHTML = f.time;
+    document.getElementById("d-user").textContent = f.date;
   }
 
-  // Sydney
-  let sydneyElement = document.querySelector("#sydney");
-  if (sydneyElement) {
-    let sydneyDateElement = sydneyElement.querySelector(".date");
-    let sydneyTimeElement = sydneyElement.querySelector(".time");
-    let sydneyTime = moment().tz("Australia/Sydney");
-
-    sydneyDateElement.innerHTML = sydneyTime.format("MMMM	Do YYYY");
-    sydneyTimeElement.innerHTML = sydneyTime.format(
-      "h:mm:ss [<small>]A[</small>]",
-    );
-  }
-
-  // Zimbabwe
-  let zimbabweElement = document.querySelector("#zimbabwe");
-  if (zimbabweElement) {
-    let zimbabweDateElement = zimbabweElement.querySelector(".date");
-    let zimbabweTimeElement = zimbabweElement.querySelector(".time");
-    let zimbabweTime = moment().tz("Africa/Harare");
-
-    sydneyDateElement.innerHTML = sydneyTime.format("MMMM	Do YYYY");
-    sydneyTimeElement.innerHTML = sydneyTime.format(
-      "h:mm:ss [<small>]A[</small>]",
-    );
-  }
-
-  // kimberley
-  let kimberleyElement = document.querySelector("#kimberley");
-  if (kimberleyElement) {
-    let kimberleyDateElement = kimberleyElement.querySelector(".date");
-    let kimberleyTimeElement = kimberleyElement.querySelector(".time");
-    let kimberleyTime = moment().tz("Africa/Johannesburg");
-
-    sydneyDateElement.innerHTML = sydneyTime.format("MMMM	Do YYYY");
-    sydneyTimeElement.innerHTML = sydneyTime.format(
-      "h:mm:ss [<small>]A[</small>]",
-    );
+  if (selectedTZ) {
+    const m = moment().tz(selectedTZ);
+    document.getElementById("selectedTime").innerHTML =
+      m.format("h:mm:ss") + " <small>" + m.format("A") + "</small>";
+    document.getElementById("selectedDate").textContent =
+      m.format("MMMM Do, YYYY");
   }
 }
 
-function updateCity(event) {
-  let cityTimeZone = event.target.value;
-  if (cityTimeZone === "current") {
-    cityTimeZone = moment.tz.guess();
-  }
-  let cityName = cityTimeZone.replace("_", " ").split("/")[1];
-  let cityTime = moment().tz(cityTimeZone);
-  let citiesElement = document.querySelector("#cities");
-  citiesElement.innerHTML = `
-  <div class="city">
-    <div>
-      <h2>${cityName}</h2>
-      <div class="date">${cityTime.format("MMMM	Do YYYY")}</div>
-    </div>
-    <div class="time">${cityTime.format("h:mm:ss")} <small>${cityTime.format(
-      "A",
-    )}</small></div>
-  </div>
-  `;
+function showSelected(tz, name, sublabel) {
+  selectedTZ = tz;
+  document.getElementById("selectedName").textContent = name;
+  document.getElementById("selectedLabel").textContent = sublabel || "";
+  document.getElementById("selectedCard").style.display = "block";
+  document.getElementById("cityGrid").style.display = "none";
+  updateTime();
 }
+
+function showGrid() {
+  selectedTZ = null;
+  document.getElementById("selectedCard").style.display = "none";
+  document.getElementById("cityGrid").style.display = "flex";
+  document.getElementById("citySelect").value = "";
+}
+
+document.getElementById("backLink").addEventListener("click", function () {
+  showGrid();
+});
+
+document.getElementById("citySelect").addEventListener("change", function () {
+  const val = this.value;
+  if (!val) {
+    showGrid();
+    return;
+  }
+  const label = this.options[this.selectedIndex].text;
+  showSelected(val, label, "");
+});
+
+document.getElementById("myLocBtn").addEventListener("click", function () {
+  const guessed = moment.tz.guess();
+  const parts = guessed.replace(/_/g, " ").split("/");
+  const name = parts.length > 1 ? parts[parts.length - 1] : guessed;
+  userTZ = guessed;
+  userCityName = name;
+
+  const userCard = document.getElementById("userCard");
+  userCard.style.display = "flex";
+  document.getElementById("userCardName").textContent = name + " (you)";
+
+  showSelected(guessed, name, "Your current location");
+});
 
 updateTime();
 setInterval(updateTime, 1000);
-
-let citiesSelectElement = document.querySelector("#city");
-citiesSelectElement.addEventListener("change", updateCity);

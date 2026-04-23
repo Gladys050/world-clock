@@ -1,0 +1,114 @@
+body {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(135deg, #f5d0ff, #c7d2fe);
+}
+
+.app {
+  text-align: center;
+  padding: 50px 20px;
+}
+
+/* Title */
+.title {
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: #1f2937;
+}
+
+.subtitle {
+  color: #6b7280;
+  margin-bottom: 30px;
+}
+
+/* Top Controls */
+.top-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+}
+
+.search {
+  padding: 12px 15px;
+  width: 250px;
+  border-radius: 25px;
+  border: none;
+  outline: none;
+}
+
+.location-btn {
+  background: #6d28d9;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 25px;
+  border: none;
+  cursor: pointer;
+}
+
+/* Toggle */
+.toggle {
+  background: #e5e7eb;
+  border-radius: 25px;
+  padding: 5px;
+}
+
+.toggle button {
+  border: none;
+  padding: 8px 15px;
+  border-radius: 20px;
+  background: transparent;
+  cursor: pointer;
+}
+
+.toggle .active {
+  background: white;
+  font-weight: bold;
+}
+
+/* Cards */
+.cards {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  flex-wrap: wrap;
+}
+
+/* Glass Card Effect */
+.card {
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(15px);
+  padding: 25px;
+  width: 260px;
+  border-radius: 20px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+  transition: 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+}
+
+/* Text */
+.city {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.time {
+  font-size: 2.2rem;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+.date {
+  color: #6b7280;
+}
+
+/* Footer */
+.footer {
+  margin-top: 40px;
+  color: #6b7280;
+}
